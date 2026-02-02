@@ -1,26 +1,23 @@
-// index.js — основной скрипт для главной страницы (kursova)
+// index.js — исправленный вариант без ESM импорта
 
-// Ждём полной загрузки DOM
 document.addEventListener("DOMContentLoaded", () => {
-  // ────────────────────────────────────────────────
-  // Фильтры (Muscles / Body parts / Equipment)
-  // ────────────────────────────────────────────────
+  // Фильтры
   const filterButtons = document.querySelectorAll(".filter-btn");
-  const exerciseCards  = document.querySelectorAll(".exercise-card");
+  const exerciseCards = document.querySelectorAll(".exercise-card");
 
-  filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      // убираем active у всех кнопок
-      filterButtons.forEach(btn => btn.classList.remove("active"));
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // убираем active со всех кнопок
+      filterButtons.forEach(b => b.classList.remove("active"));
       // добавляем active текущей
-      button.classList.add("active");
+      btn.classList.add("active");
 
-      const selectedFilter = button.getAttribute("data-filter");
+      const filter = btn.getAttribute("data-filter");
 
       exerciseCards.forEach(card => {
         const cardFilter = card.getAttribute("data-filter");
 
-        if (selectedFilter === "all" || cardFilter === selectedFilter) {
+        if (filter === "all" || cardFilter === filter) {
           card.style.display = "block";
         } else {
           card.style.display = "none";
@@ -29,24 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ────────────────────────────────────────────────
-  // Пагинация (только переключение active-класса)
-  // ────────────────────────────────────────────────
-  document.querySelectorAll(".page-btn").forEach(button => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll(".page-btn").forEach(btn => {
-        btn.classList.remove("active");
-      });
-      button.classList.add("active");
-      // Если нужна реальная смена контента — добавьте логику здесь
+  // Пагинация (пока только смена active-класса)
+  document.querySelectorAll(".page-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".page-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
     });
   });
 
-  // ────────────────────────────────────────────────
-  // Форма подписки + уведомление
-  // ────────────────────────────────────────────────
+  // Форма подписки
   const subscribeForm = document.getElementById("subscribe-form");
-
   if (subscribeForm) {
     subscribeForm.addEventListener("submit", e => {
       e.preventDefault();
@@ -59,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // имитация успешной отправки
+      // Имитация отправки
       setTimeout(() => {
         showNotification(`Thank you! You've been subscribed with: ${email}`, "success");
         subscribeForm.reset();
@@ -67,30 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ────────────────────────────────────────────────
   // Динамическое добавление ссылки "Favorites" в навигацию
-  // ────────────────────────────────────────────────
-  addFavoritesLinkToNav();
+  addFavoritesLink();
 });
 
-// ────────────────────────────────────────────────
 // Вспомогательные функции
-// ────────────────────────────────────────────────
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function showNotification(message, type = "info") {
-  // Удаляем предыдущее уведомление, если есть
-  const oldNotification = document.querySelector(".notification");
-  if (oldNotification) oldNotification.remove();
+  // Удаляем старое уведомление, если есть
+  const old = document.querySelector(".notification");
+  if (old) old.remove();
 
   const notification = document.createElement("div");
   notification.className = `notification notification-${type}`;
   notification.textContent = message;
 
-  // Стили (можно вынести в CSS позже)
   notification.style.cssText = `
     position: fixed;
     top: 100px;
@@ -106,7 +90,7 @@ function showNotification(message, type = "info") {
 
   document.body.appendChild(notification);
 
-  // Анимация (тоже можно вынести в CSS)
+  // Анимация
   const style = document.createElement("style");
   style.textContent = `
     @keyframes slideInRight {
@@ -116,31 +100,26 @@ function showNotification(message, type = "info") {
   `;
   document.head.appendChild(style);
 
-  // Автозакрытие через 3 секунды
   setTimeout(() => {
-    if (notification.parentNode) {
-      notification.remove();
-    }
+    if (notification.parentNode) notification.remove();
   }, 3000);
 }
 
-function addFavoritesLinkToNav() {
-  const navLinks = document.querySelectorAll(".nav-link");
+function addFavoritesLink() {
+  const links = document.querySelectorAll(".nav-link");
 
-  // Проверяем, что есть хотя бы 2 ссылки и это именно главная/упражнения
-  if (navLinks.length >= 2 &&
-      navLinks[0].href.includes("index.html") &&
-      navLinks[1].href.includes("exercises.html")) {
+  if (links.length >= 2 &&
+      links[0].href.includes("index.html") &&
+      links[1].href.includes("exercises.html")) {
 
-    // Если "Favorites" ещё нет — добавляем
     if (!document.querySelector('a[href="./favorites.html"]')) {
-      const favoritesLink = document.createElement("a");
-      favoritesLink.href = "./favorites.html";
-      favoritesLink.className = "nav-link";
-      favoritesLink.textContent = "Favorites";
+      const favLink = document.createElement("a");
+      favLink.href = "./favorites.html";
+      favLink.className = "nav-link";
+      favLink.textContent = "Favorites";
 
-      // Вставляем после "Exercises"
-      navLinks[1].parentNode.insertBefore(favoritesLink, navLinks[1].nextSibling);
+      // Вставляем после Exercises
+      links[1].parentNode.insertBefore(favLink, links[1].nextSibling);
     }
   }
 }
