@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Energy</title>
-  <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
-  <script type="module" crossorigin src="/kursova/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/kursova/assets/layout-CNiZW9Jz.js">
-  <link rel="stylesheet" crossorigin href="/kursova/assets/layout-Dxc3fJ70.css">
+  
+  <!-- favicon (лежит в корне репозитория) -->
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  
+  <!-- Основной скрипт – обычное подключение (твой index.js) -->
+  <script src="./index.js" defer></script>
+  
+  <!-- Если позже добавишь CSS – раскомментируй и положи файл в корень или assets -->
+  <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
 <body>
   <div id="app">
@@ -16,8 +21,9 @@
       <div class="container">
         <div class="logo">YOUR ENERGY</div>
         <nav class="nav">
-          <a href="#" class="nav-link active">Home</a>
-          <a href="#" class="nav-link">Favorites</a>
+          <a href="./index.html" class="nav-link active">Home</a>
+          <a href="./exercises.html" class="nav-link">Exercises</a>
+          <a href="./favorites.html" class="nav-link">Favorites</a>
         </nav>
         <div class="social">
           <a href="#"><svg width="20" height="20"><use href="#icon-facebook"/></svg></a>
@@ -41,7 +47,12 @@
           <span class="tag">#Diet</span>
         </div>
       </div>
-      <img src="/kursova/assets/hero-Dz8P5uDH.jpg" alt="Two women high-fiving" class="hero-img" />
+      <img 
+        src="./assets/hero-Dz8P5uDH.jpg" 
+        alt="Two women high-fiving" 
+        class="hero-img" 
+        onerror="this.src='https://via.placeholder.com/800x500?text=Hero+Image+Not+Found'; this.alt='Placeholder';" 
+      />
     </section>
 
     <!-- Exercises -->
@@ -53,39 +64,15 @@
           <button class="filter-btn" data-filter="Body parts">Body parts</button>
           <button class="filter-btn" data-filter="Equipment">Equipment</button>
         </div>
-
         <div class="exercises-grid">
-          <!-- Row 1 -->
+          <!-- Quote card -->
           <div class="quote-card">
             <div class="quote-icon">"</div>
             <p class="quote-text">A lot of times I find that people who are blessed with the most talent don't ever develop that attitude, and the ones who aren't blessed in that way are the most competitive and have the biggest heart.</p>
             <div class="quote-author">Tom Brady</div>
           </div>
-          
-          <!-- Muscles -->
-          <div class="exercise-card" data-filter="Muscles">
-            <img src="/kursova/assets/exercise-1-B9LfNaE1.jpg" alt="Abductors" />
-            <div class="exercise-overlay">
-              <h3>Abductors</h3>
-              <div class="category">Muscles</div>
-            </div>
-          </div>
-          <div class="exercise-card" data-filter="Muscles">
-            <img src="/kursova/assets/exercise-2--ZGIYTjU.jpg" alt="Abs" />
-            <div class="exercise-overlay">
-              <h3>Abs</h3>
-              <div class="category">Muscles</div>
-            </div>
-          </div>
-          <div class="exercise-card" data-filter="Muscles">
-            <img src="/kursova/assets/exercise-3-MEUS0Hvy.jpg" alt="Adductors" />
-            <div class="exercise-overlay">
-              <h3>Adductors</h3>
-              <div class="category">Muscles</div>
-            </div>
-          </div>
 
-          <!-- Row 2 -->
+          <!-- Info card -->
           <div class="info-card">
             <div class="info-icon">⏱️</div>
             <div>
@@ -96,89 +83,113 @@
               </div>
             </div>
           </div>
-          
+
+          <!-- Muscles examples -->
+          <div class="exercise-card" data-filter="Muscles">
+            <img 
+              src="./assets/exercise-1-B9LfNaE1.jpg" 
+              alt="Abductors" 
+              onerror="this.style.display='none';" 
+            />
+            <div class="exercise-overlay">
+              <h3>Abductors</h3>
+              <div class="category">Muscles</div>
+            </div>
+          </div>
+          <div class="exercise-card" data-filter="Muscles">
+            <img src="./assets/exercise-2--ZGIYTjU.jpg" alt="Abs" onerror="this.style.display='none';" />
+            <div class="exercise-overlay">
+              <h3>Abs</h3>
+              <div class="category">Muscles</div>
+            </div>
+          </div>
+          <div class="exercise-card" data-filter="Muscles">
+            <img src="./assets/exercise-3-MEUS0Hvy.jpg" alt="Adductors" onerror="this.style.display='none';" />
+            <div class="exercise-overlay">
+              <h3>Adductors</h3>
+              <div class="category">Muscles</div>
+            </div>
+          </div>
+
           <!-- Body parts -->
           <div class="exercise-card" data-filter="Body parts">
-            <img src="/kursova/assets/exercise-4-kOBNIi_R.jpg" alt="Biceps" />
+            <img src="./assets/exercise-4-kOBNIi_R.jpg" alt="Biceps" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Biceps</h3>
               <div class="category">Body parts</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Body parts">
-            <img src="/kursova/assets/exercise-5-DuPe135w.jpg" alt="Calves" />
+            <img src="./assets/exercise-5-DuPe135w.jpg" alt="Calves" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Calves</h3>
               <div class="category">Body parts</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Body parts">
-            <img src="/kursova/assets/exercise-6-DKBfJ0x3.jpg" alt="Cardiovascular System" />
+            <img src="./assets/exercise-6-DKBfJ0x3.jpg" alt="Cardiovascular System" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Cardiovascular System</h3>
               <div class="category">Body parts</div>
             </div>
           </div>
 
-          <!-- Row 3 -->
           <!-- Equipment -->
           <div class="exercise-card" data-filter="Equipment">
-            <img src="/kursova/assets/exercise-7-Cwd2uOT5.jpg" alt="Dumbbells" />
+            <img src="./assets/exercise-7-Cwd2uOT5.jpg" alt="Dumbbells" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Dumbbells</h3>
               <div class="category">Equipment</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Equipment">
-            <img src="/kursova/assets/exercise-8-BTDYvJdb.jpg" alt="Barbell" />
+            <img src="./assets/exercise-8-BTDYvJdb.jpg" alt="Barbell" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Barbell</h3>
               <div class="category">Equipment</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Equipment">
-            <img src="/kursova/assets/exercise-9-7SOdYMMo.jpg" alt="Resistance Band" />
+            <img src="./assets/exercise-9-7SOdYMMo.jpg" alt="Resistance Band" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Resistance Band</h3>
               <div class="category">Equipment</div>
             </div>
           </div>
 
-          <!-- Row 4 -->
-          <!-- Mix of categories -->
+          <!-- Mix -->
           <div class="exercise-card" data-filter="Muscles">
-            <img src="/kursova/assets/exercise-10-CcKJwL0w.jpg" alt="Hamstrings" />
+            <img src="./assets/exercise-10-CcKJwL0w.jpg" alt="Hamstrings" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Hamstrings</h3>
               <div class="category">Muscles</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Body parts">
-            <img src="/kursova/assets/exercise-11-nVKgW_Bk.jpg" alt="Lats" />
+            <img src="./assets/exercise-11-nVKgW_Bk.jpg" alt="Lats" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Lats</h3>
               <div class="category">Body parts</div>
             </div>
           </div>
           <div class="exercise-card" data-filter="Equipment">
-            <img src="/kursova/assets/exercise-11-nVKgW_Bk.jpg" alt="Kettlebell" />
+            <img src="./assets/exercise-11-nVKgW_Bk.jpg" alt="Kettlebell" onerror="this.style.display='none';" />
             <div class="exercise-overlay">
               <h3>Kettlebell</h3>
               <div class="category">Equipment</div>
             </div>
           </div>
-          
-   
 
-        <!-- Pagination -->
-        <div class="pagination">
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA / Subscription -->
     <section class="cta">
       <div class="container">
         <div class="cta-content">
@@ -206,7 +217,7 @@
         <div class="footer-bottom">
           <div>Your Energy. All rights reserved.</div>
           <div>
-            <a href="#">Privacy Policy</a> / 
+            <a href="#">Privacy Policy</a> /
             <a href="#">Terms of Service</a>
           </div>
           <div class="copyright">©2023</div>
@@ -215,7 +226,7 @@
     </footer>
   </div>
 
-  <!-- SVG sprites -->
+  <!-- SVG sprites для иконок -->
   <svg style="display: none">
     <symbol id="icon-facebook" viewBox="0 0 24 24">
       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.39 10.95-1.688 12.707 0 0 1.37 2.485 4.37 2.485 1.68 0 3.36-.01 4.37-.01.38 0 .75 0 1.125.01 1.205 0 2.41-.01 3.36-.01 1.47 0 2.94-.01 4.37-.01 2.99 0 4.37-2.485 4.37-2.485C28.47 22.95 32.86 17.99 32.86 12.073z"/>
@@ -227,6 +238,5 @@
       <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 1.168a1.832 1.832 0 00-1.832 1.832v10.615a1.832 1.832 0 001.832 1.832h10.615a1.832 1.832 0 001.832-1.832V5.184a1.832 1.832 0 00-1.832-1.832H8.999z"/>
     </symbol>
   </svg>
-
 </body>
 </html>
