@@ -1,3 +1,4 @@
+
 // vite.config.js
 import { defineConfig } from 'vite';
 import { glob } from 'glob';
@@ -7,6 +8,7 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
+    base: '/kursova/', // ← для GitHub Pages
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
